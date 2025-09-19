@@ -64,7 +64,7 @@ export function LoginForm({
                             </div>
 
                             <div className="text-center text-sm">
-                                Don't have an account?{" "}
+                                Don&apos;t have an account?{" "}
                                 <a href="#" className="underline underline-offset-4">
                                     Sign up
                                 </a>
@@ -74,7 +74,7 @@ export function LoginForm({
 
                     <div className="bg-muted relative hidden md:block">
                         <img
-                            src="/2.jpg"
+                            src="2.jpg"
                             alt="Image"
                             className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
                         />
