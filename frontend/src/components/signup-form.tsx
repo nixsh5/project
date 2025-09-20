@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { signupSchema } from "@/lib/schemas" // import schema
 import { cn } from "@/lib/utils"
+import Link from 'next/link'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -68,9 +69,9 @@ export function SignupForm({ className, ...props }: React.ComponentProps<"div">)
 
                             <div className="text-center text-sm">
                                 Already have an account?{" "}
-                                <a href="/" className="underline underline-offset-4">
+                                <Link href="/" className="underline underline-offset-4">
                                     Log in
-                                </a>
+                                </Link>
                             </div>
                         </div>
                     </form>
