@@ -36,9 +36,14 @@ export function SignupForm({ className, ...props }: React.ComponentProps<"div">)
             }
             alert("Signup successful! Please login.")
             window.location.href = "/login"
-        } catch (error: any) {
-            alert(error.message)
+        } catch (error: unknown) {
+            if (error instanceof Error) {
+                alert(error.message);
+            } else {
+                alert("An unknown error occurred");
+            }
         }
+
     }
 
     return (

@@ -38,9 +38,14 @@ export function LoginForm({
             localStorage.setItem("token", json.token)
             alert("Login successful!")
             // Optionally redirect or update app state here
-        } catch (err: any) {
-            alert(err.message)
+        } catch (error: unknown) {
+            if (error instanceof Error) {
+                alert(error.message);
+            } else {
+                alert("An unknown error occurred");
+            }
         }
+
     }
 
     return (
