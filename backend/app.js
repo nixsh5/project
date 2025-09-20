@@ -14,8 +14,8 @@ app.use(cors({
 }))
 
 // Example health endpoint
-app.get('/health', (req, res) => {
-    res.json({ status: 'ok' })
+app.get('/', (req, res) => {
+    res.send('it works')
 })
 
 // Mount your auth routes here (we'll create auth.js later)
