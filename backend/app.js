@@ -19,7 +19,7 @@ app.get('/', (req, res) => {
 })
 
 // Mount your auth routes here (we'll create auth.js later)
-// const authRoutes = require('./routes/auth')
-// app.use('/api/auth', authRoutes)
+const authRoutes = require('./routes/auth')
+app.use('/api/auth', authRoutes)
 
 module.exports = app

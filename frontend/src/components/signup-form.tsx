@@ -6,11 +6,12 @@ import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { signupSchema } from "@/lib/schemas" // import schema
 import { cn } from "@/lib/utils"
-import Link from 'next/link'
+import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import Image from "next/image"
 
 export type SignupData = z.infer<typeof signupSchema>
 
@@ -21,9 +22,23 @@ export function SignupForm({ className, ...props }: React.ComponentProps<"div">)
         formState: { errors, isSubmitting },
     } = useForm<SignupData>({ resolver: zodResolver(signupSchema) })
 
-    function onSubmit(data: SignupData) {
-        // Call your API to create the user here.
-        console.log("Form data", data)
+    async function onSubmit(data: SignupData) {
+        try {
+            const response = await fetch("http://localhost:5000/api/auth/signup", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data),
+            })
+
+            const result = await response.json()
+            if (!response.ok) {
+                throw new Error(result.message || "Failed to sign up")
+            }
+            alert("Signup successful! Please login.")
+            window.location.href = "/login"
+        } catch (error: any) {
+            alert(error.message)
+        }
     }
 
     return (
@@ -77,11 +92,15 @@ export function SignupForm({ className, ...props }: React.ComponentProps<"div">)
                     </form>
 
                     <div className="bg-muted relative hidden md:block">
-                        <img src="/2.jpg" alt="Image" className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale" />
+                        <Image
+                            src="/2.jpg"
+                            alt="Image"
+                            layout="fill"
+                            className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
+                        />
                     </div>
                 </CardContent>
             </Card>
         </div>
     )
 }
-//n
